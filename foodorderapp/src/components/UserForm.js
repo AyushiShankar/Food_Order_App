@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   pincode: yup
     .string()
     .max(6)
-    .min(6)
+    .min(6) 
     .required("Pincode is required")
     .matches(
       /^[1-9][0-9]{5}$/,
