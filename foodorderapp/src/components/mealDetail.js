@@ -9,12 +9,11 @@ export default function MealDetail({
   return (
     <div className="cart-item-actions">
       <p>{name}</p>
-
-      <Button className="button" onclick={() => downMealCount(id)}>
+      <Button className="button" onClick={() => downMealCount(id)} variant="">
         -
       </Button>
       <span>{quantity}</span>
-      <Button className="button" onclick={() => upMealCount(id)}>
+      <Button className="button" onClick={() => upMealCount(id)} variant="">
         +
       </Button>
       <p className="cart-total">${totalPrice}</p>

@@ -3,32 +3,27 @@ import { CartContext } from "../utils/CartContextProvider";
 import MealDetail from "./mealDetail";
 import Button from "./Button";
 
-export default function CartDetails( ){
+export default function CartDetails({ onClick }) {
   const { cartOrder } = useContext(CartContext);
 
   const cartAmount = cartOrder.reduce(
-   (total, item) => total + item.totalPrice,
-    0,
+    (total, item) => total + Number(item.totalPrice),
+    0
   );
   console.log("cartAmount in CartDetails:", cartAmount);
 
   return (
     <>
       <ul>
-        {cartOrder.length === 0 && <p>Your cart is empty</p>}
+        {cartOrder.length === 0 && <h2>Your cart is empty</h2>}
         {cartOrder.map((item) => {
           return (
-            <li key={item.id} className="cart-item">
+            <li key={item.id}>
               <MealDetail item={item} />
             </li>
           );
         })}
       </ul>
-      <div className="modal-actions">
-         <Button>
-          Checkout ₹{cartAmount}
-        </Button>
-      </div>
     </>
   );
 }

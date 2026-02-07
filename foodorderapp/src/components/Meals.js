@@ -21,7 +21,7 @@ export default function Meals() {
     <ul id="meals">
       {meals.map((meal) => (
         <li key={meal.id}>
-          <MealItems meal={meal} onclick={()=>addToCart(meal)} />
+          <MealItems meal={meal} onClick={() => addToCart(meal)} />
         </li>
       ))}
     </ul>

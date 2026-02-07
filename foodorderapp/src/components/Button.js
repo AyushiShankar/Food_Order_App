@@ -1,32 +1,58 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import ModalCart from "./ModalCart";
+import FormModal from "./FormModal";
 
-export default function Button({ children, isModal, onClick }) {
+export default function Button({ children, onClick, className, variant }) {
   const dialog = useRef();
-  const [open, setOpen] = useState(false);
+  const dialogForm = useRef();
 
-  function openModal() {
-    setOpen(true);
+  const [activeModal, setActiveModal] = useState(null);
+
+  function handleClick(variant) {
+    if (variant === "cart-modal") {
+      setActiveModal("cart");
+    } else if (variant === "form-modal") {
+      setActiveModal("form");
+    } else {
+      onClick();
+    }
   }
 
   function closeModal() {
-    setOpen(false);
+    dialog.current?.close();
+    setActiveModal(null);
   }
+  function proceedToForm() {
+     dialog.current?.close();
+    setActiveModal("form");
+  }
+  useEffect(() => {
+    if (activeModal) {
+      dialog.current?.open();
+    }
+  }, [activeModal]);
 
   return (
     <>
       <button
         type="button"
-        className="button"
-        onClick={isModal ? openModal : onClick}
+        className={className}
+        onClick={() => handleClick(variant)}
       >
         {children}
       </button>
+      {activeModal === "cart" && (
+        <ModalCart
+          ref={dialog}
+          onClose={closeModal}
+          onProceed={proceedToForm}
+        />
+      )}
 
-      {isModal && open && (
-       
-          <ModalCart ref={dialog} onClose={closeModal} />
-
+      {activeModal === "form" && (
+        <div className="modal-actions">
+          <FormModal ref={dialog} onClose={closeModal} />
+        </div>
       )}
     </>
   );
