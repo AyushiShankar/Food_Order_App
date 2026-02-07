@@ -109,6 +109,7 @@ h1 {
 
 .cart h2 {
   margin: 1rem 0;
+  color:black;
 }
 
 .cart ul {
@@ -121,6 +122,7 @@ h1 {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+  color: black;
 }
 
 .modal-actions .text-button {
@@ -130,6 +132,16 @@ h1 {
 .modal-actions .text-button:hover,
 .modal-actions .text-button:active {
   color: #312c1d;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 
 .cart-total {
@@ -156,6 +168,10 @@ h1 {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+.cart-item-actions {
+
+  color: black;
 }
 
 .cart-item-actions button {

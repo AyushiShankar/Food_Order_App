@@ -22,7 +22,7 @@ export function CartContextProvider({ children }) {
             ? {
                 ...item,
                 quantity: item.quantity + 1,
-                price: (item.quantity + 1 )* item.price,
+                totalPrice: (item.quantity + 1 )* item.price,
                 
               }
             : item,
@@ -43,7 +43,7 @@ export function CartContextProvider({ children }) {
           ? {
               ...meal,
               quantity: meal.quantity + 1,
-              totalPrice: (meal.quantity + 1) * meal.price,
+              totalPrice: ((meal.quantity + 1) * meal.price).toFixed(2),
             }
           : meal,
       ),
@@ -58,7 +58,7 @@ export function CartContextProvider({ children }) {
             ? {
                 ...meal,
                 quantity: meal.quantity - 1,
-                totalPrice: (meal.quantity - 1) * meal.price,
+                totalPrice: ((meal.quantity - 1) * meal.price).toFixed(2),
               }
             : meal,
         )
