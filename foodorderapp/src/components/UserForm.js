@@ -39,12 +39,27 @@ export default function UserForm() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (formData) => {
-    console.log("Form data", formData);
+  const order = {
+    orderData: {
+      customer: {
+        email: formData.email,
+        name: formData.name,
+        street: formData.street,
+        pincode: formData.pincode,
+        city: formData.city,
+      },
+    },
+  };
 
-    await fetch("http://localhost:3000/orders", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
+  console.log(order);
+
+  fetch("http://localhost:3000/orders", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ order }),
+  });
   };
 
   return (
