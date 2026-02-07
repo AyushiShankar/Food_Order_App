@@ -12,7 +12,7 @@ export default function Header() {
         <img src={logo} alt="Food Order App Logo" />
         <h1>Zwiggy</h1>
       </div>
-      <Button className="button" variant="cart-modal">
+      <Button className="button" variant="cart-modal" cartCount={cartCount}>
         Cart ({cartCount})
       </Button>
     </div>

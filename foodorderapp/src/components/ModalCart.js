@@ -1,10 +1,11 @@
-import { forwardRef, useImperativeHandle, useState, useContext } from "react";
+import { forwardRef, useImperativeHandle, useContext, useState } from "react";
 import { CartContext } from "../utils/CartContextProvider";
 import CartDetails from "./CartDetails";
 import Button from "./Button";
 
-const ModalCart = forwardRef(function ModalCart({ onClose, onProceed }, ref) {
+const ModalCart = forwardRef(function ModalCart({ onClose }, ref) {
   const { cartOrder } = useContext(CartContext);
+  // const dialog = useRef(null);
 
   const cartAmount = cartOrder.reduce(
     (total, item) => total + Number(item.totalPrice),
@@ -35,7 +36,7 @@ const ModalCart = forwardRef(function ModalCart({ onClose, onProceed }, ref) {
         </div>
         <CartDetails className="cart-items" />
 
-        <Button className="button" variant="form-modal" onClick={onProceed}>
+        <Button className="button" variant="form-modal" onClick={onClose}>
           Checkout ${cartAmount}
         </Button>
       </div>

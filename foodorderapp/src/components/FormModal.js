@@ -1,8 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
-import Button from "./Button";
 import UserForm from "./UserForm";
 
-const FormModal = forwardRef(function FormModal({ onClose }, ref) {
+const FormModal = forwardRef(function FormModal({ ...props }, ref) {
   const [open, setOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
@@ -17,12 +16,11 @@ const FormModal = forwardRef(function FormModal({ onClose }, ref) {
   if (!open) return null;
 
   return (
-    <div className="control">
-      <h2>Please fill the details:</h2>
-      <UserForm />
-      <Button className="text-button" onClick={onClose}>
-        Submit
-      </Button>
+    <div className="modal-backdrop">
+      <dialog className="control" ref={ref}>
+        <h2>Please fill the details:</h2>
+        <UserForm />
+      </dialog>
     </div>
   );
 });
