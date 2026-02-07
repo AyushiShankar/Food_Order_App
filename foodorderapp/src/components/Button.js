@@ -23,8 +23,9 @@ export default function Button({ children, onClick, className, variant }) {
     setActiveModal(null);
   }
   function proceedToForm() {
-     dialog.current?.close();
-    setActiveModal("form");
+    dialog.current?.close();
+    setActiveModal(null);
+    // setActiveModal("form");
   }
   useEffect(() => {
     if (activeModal) {
