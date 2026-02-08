@@ -31,7 +31,7 @@ const schema = yup.object().shape({
     ),
 });
 
-export default function UserForm() {
+export default function UserForm({ onClose }) {
   const {
     register,
     handleSubmit,
@@ -39,27 +39,31 @@ export default function UserForm() {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (formData) => {
-  const order = {
-    orderData: {
-      customer: {
-        email: formData.email,
-        name: formData.name,
-        street: formData.street,
-        pincode: formData.pincode,
-        city: formData.city,
+    const order = {
+      orderData: {
+        customer: {
+          email: formData.email,
+          name: formData.name,
+          street: formData.street,
+          pincode: formData.pincode,
+          city: formData.city,
+        },
       },
-    },
-  };
+    };
 
-  console.log(order);
+    console.log(order);
 
-  fetch("http://localhost:3000/orders", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ order }),
-  });
+    await fetch("http://localhost:3000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ order }),
+    });
+
+    if (typeof onClose === "function") {
+      onClose();
+    }
   };
 
   return (
