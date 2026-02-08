@@ -24,10 +24,8 @@ export default function Button({ children, onClick, className, variant }) {
   function closeModal(next) {
     dialog.current?.close();
     setActiveModal(null);
-    console.log("<----Rendered Button close Modal cart---->");
     if (next === "form") {
       handleClick("form-modal");
-      console.log("<----Rendered FROM---->");
     }
   }
 
@@ -50,7 +48,7 @@ export default function Button({ children, onClick, className, variant }) {
         <ModalCart ref={dialog} onClose={closeModal} />
       )}
 
-      {activeModal === "form" && cartCount > 0 && (
+      {activeModal === "form" && (
         <div className="modal-actions">
           <FormModal ref={dialog} onClose={closeModal} />
         </div>
