@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { CartContext } from "../utils/CartContextProvider";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../store";
 import MealItems from "./MealItems";
 
 export default function Meals() {
   const [meals, setMeals] = useState([]);
-  const { addToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function availableMeals() {
@@ -21,7 +21,7 @@ export default function Meals() {
     <ul id="meals">
       {meals.map((meal) => (
         <li key={meal.id}>
-          <MealItems meal={meal} onClick={() => addToCart(meal)} />
+          <MealItems meal={meal} onClick={() => dispatch(addToCart(meal))} />
         </li>
       ))}
     </ul>

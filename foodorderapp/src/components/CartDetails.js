@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { CartContext } from "../utils/CartContextProvider";
+import { useSelector } from "react-redux";
 import MealDetail from "./mealDetail";
 import Button from "./Button";
 
 export default function CartDetails({ onClick }) {
-  const { cartOrder } = useContext(CartContext);
+  const cartOrder = useSelector((state) => state.cartOrder);
 
   const cartAmount = cartOrder.reduce(
     (total, item) => total + Number(item.totalPrice),
