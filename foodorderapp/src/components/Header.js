@@ -1,10 +1,11 @@
 import logo from "../assets/logo.jpg";
 import Button from "./Button";
-import { useContext } from "react";
-import { CartContext } from "../utils/CartContextProvider";
+import { useSelector } from "react-redux";
 
 export default function Header() {
-  const { cartCount } = useContext(CartContext);
+  const cartCount = useSelector((state) =>
+    state.cartOrder.reduce((total, item) => total + item.quantity, 0),
+  );
 
   return (
     <div id="main-header">

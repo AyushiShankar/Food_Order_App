@@ -1,10 +1,10 @@
-import { forwardRef, useImperativeHandle, useContext, useState } from "react";
-import { CartContext } from "../utils/CartContextProvider";
+import { forwardRef, useImperativeHandle, useState } from "react";
+import { useSelector } from "react-redux";
 import CartDetails from "./CartDetails";
 import Button from "./Button";
 
 const ModalCart = forwardRef(function ModalCart({ onClose }, ref) {
-  const { cartOrder } = useContext(CartContext);
+  const cartOrder = useSelector((state) => state.cartOrder);
   // const dialog = useRef(null);
 
   const cartAmount = cartOrder.reduce(
