@@ -1,76 +1,53 @@
-import { createStore } from "redux";
-
-const ADD_TO_CART = "cart/addToCart";
-const UP_MEAL_COUNT = "cart/upMealCount";
-const DOWN_MEAL_COUNT = "cart/downMealCount";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartOrder: [],
 };
 
-function mealCount(state = initialState, action) {
-  switch (action.type) {
-    case ADD_TO_CART: {
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addToCart(state, action) {
       const meal = action.payload;
       const existing = state.cartOrder.find((item) => item.id === meal.id);
 
       if (existing) {
-        const updatedCart = state.cartOrder.map((item) =>
-          item.id === meal.id
-            ? {
-                ...item,
-                quantity: item.quantity + 1,
-                totalPrice: (item.quantity + 1) * Number(item.price),
-              }
-            : item,
-        );
-        return { ...state, cartOrder: updatedCart };
+        existing.quantity += 1;
+        existing.totalPrice = (
+          existing.quantity * Number(existing.price)
+        ).toFixed(2);
+        return;
       }
 
-      const newItem = {
+      state.cartOrder.push({
         ...meal,
         quantity: 1,
-        totalPrice: Number(meal.price),
-      };
-      return { ...state, cartOrder: [...state.cartOrder, newItem] };
-    }
-    case UP_MEAL_COUNT: {
+        totalPrice: Number(meal.price).toFixed(2),
+      });
+    },
+    upMealCount(state, action) {
       const id = action.payload;
-      const updatedCart = state.cartOrder.map((meal) =>
-        meal.id === id
-          ? {
-              ...meal,
-              quantity: meal.quantity + 1,
-              totalPrice: (meal.quantity + 1) * Number(meal.price),
-            }
-          : meal,
-      );
-      return { ...state, cartOrder: updatedCart };
-    }
-    case DOWN_MEAL_COUNT: {
+      const meal = state.cartOrder.find((item) => item.id === id);
+      if (!meal) return;
+      meal.quantity += 1;
+      meal.totalPrice = (meal.quantity * Number(meal.price)).toFixed(2);
+    },
+    downMealCount(state, action) {
       const id = action.payload;
-      const updatedCart = state.cartOrder
-        .map((meal) =>
-          meal.id === id
-            ? {
-                ...meal,
-                quantity: meal.quantity - 1,
-                totalPrice: (meal.quantity - 1) * Number(meal.price),
-              }
-            : meal,
-        )
-        .filter((meal) => meal.quantity > 0);
-      return { ...state, cartOrder: updatedCart };
-    }
-    default:
-      return state;
-  }
-}
+      const meal = state.cartOrder.find((item) => item.id === id);
+      if (!meal) return;
+      meal.quantity -= 1;
+      meal.totalPrice = (meal.quantity * Number(meal.price)).toFixed(2);
+      state.cartOrder = state.cartOrder.filter((item) => item.quantity > 0);
+    },
+  },
+});
 
-export const addToCart = (meal) => ({ type: ADD_TO_CART, payload: meal });
-export const upMealCount = (id) => ({ type: UP_MEAL_COUNT, payload: id });
-export const downMealCount = (id) => ({ type: DOWN_MEAL_COUNT, payload: id });
+export const { addToCart, upMealCount, downMealCount } = cartSlice.actions;
 
-const store = createStore(mealCount);
+const store = configureStore({
+  reducer: cartSlice.reducer,
+});
 
 export default store;
