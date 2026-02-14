@@ -5,13 +5,14 @@ import Button from "./Button";
 
 const ModalCart = forwardRef(function ModalCart({ onClose }, ref) {
   const cartOrder = useSelector((state) => state.cartOrder);
-  // const dialog = useRef(null);
 
   const cartAmount = cartOrder.reduce(
     (total, item) => total + Number(item.totalPrice),
     0
   );
-  console.log("cartAmount in CartDetails:", cartAmount);
+  const formattedCartAmount = cartAmount.toFixed(2);
+
+  console.log("cartAmount in CartDetails:", formattedCartAmount);
   const [open, setOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
@@ -35,13 +36,8 @@ const ModalCart = forwardRef(function ModalCart({ onClose }, ref) {
           </Button>
         </div>
         <CartDetails className="cart-items" />
-
-        <Button
-          className="button"
-          variant="form-modal"
-          onClick={() => onClose("form")}
-        >
-          Checkout ${cartAmount}
+        <Button className="button" variant="" onClick={() => onClose("form")}>
+          Checkout ${formattedCartAmount}
         </Button>
       </div>
     </div>

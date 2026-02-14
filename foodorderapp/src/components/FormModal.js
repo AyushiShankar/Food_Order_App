@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 import UserForm from "./UserForm";
+import Button from "./Button";
 
 const FormModal = forwardRef(function FormModal({ onClose }, ref) {
   const [open, setOpen] = useState(false);
@@ -18,7 +19,12 @@ const FormModal = forwardRef(function FormModal({ onClose }, ref) {
   return (
     <div className="modal-backdrop">
       <dialog className="control">
-        <h2>Please fill the details:</h2>
+        <div className="modal-actions">
+          <h2>Please fill the details:</h2>
+          <Button className="text-button" onClick={onClose} variant="">
+            ✖
+          </Button>
+        </div>
         <UserForm onClose={onClose} />
       </dialog>
     </div>
