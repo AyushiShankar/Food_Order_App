@@ -24,9 +24,8 @@ export default function Button({ children, onClick, className, variant }) {
   function closeModal(next) {
     dialog.current?.close();
     setActiveModal(null);
-    if (next === "form") {
-      handleClick("form-modal");
-    }
+    next === "form" && handleClick("form-modal");
+    next === "cart" && handleClick("cart-modal");
   }
 
   useEffect(() => {

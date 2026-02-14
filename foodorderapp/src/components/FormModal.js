@@ -18,10 +18,18 @@ const FormModal = forwardRef(function FormModal({ onClose }, ref) {
 
   return (
     <div className="modal-backdrop">
-      <dialog className="control">
+      <div className="control cart">
+        <div className="modal-actions">
+          <Button className="text-button" onClick={() => onClose("cart")}>
+            <img src="/images/backBtn.svg" alt="backBtn" />
+          </Button>
         <h2>Please fill the details:</h2>
+          <Button className="text-button" onClick={onClose} variant="">
+            ✖
+          </Button>
+        </div>
         <UserForm onClose={onClose} />
-      </dialog>
+      </div>
     </div>
   );
 });
