@@ -36,8 +36,13 @@ const ModalCart = forwardRef(function ModalCart({ onClose }, ref) {
           </Button>
         </div>
         <CartDetails className="cart-items" />
-        <Button className="button" variant="" onClick={() => onClose("form")}>
-          Checkout ${formattedCartAmount}
+
+        <Button
+          className="button"
+          variant="form-modal"
+          onClick={() => onClose("form")}
+        >
+          Checkout ${cartAmount}
         </Button>
       </div>
     </div>

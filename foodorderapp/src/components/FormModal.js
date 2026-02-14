@@ -19,12 +19,7 @@ const FormModal = forwardRef(function FormModal({ onClose }, ref) {
   return (
     <div className="modal-backdrop">
       <dialog className="control">
-        <div className="modal-actions">
-          <h2>Please fill the details:</h2>
-          <Button className="text-button" onClick={onClose} variant="">
-            ✖
-          </Button>
-        </div>
+        <h2>Please fill the details:</h2>
         <UserForm onClose={onClose} />
       </dialog>
     </div>
