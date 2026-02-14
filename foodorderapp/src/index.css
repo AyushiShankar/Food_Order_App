@@ -332,6 +332,10 @@ h1 {
   color: red;
   font-weight:600;
 }
+.toast img{
+width: 24px;
+height: 24px;
+}
 
 @keyframes fade-slide-up {
   from {

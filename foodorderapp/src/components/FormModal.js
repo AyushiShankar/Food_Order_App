@@ -23,7 +23,7 @@ const FormModal = forwardRef(function FormModal({ onClose }, ref) {
           <Button className="text-button" onClick={() => onClose("cart")}>
             <img src="/images/backBtn.svg" alt="backBtn" />
           </Button>
-        <h2>Please fill the details:</h2>
+          <h2>Please fill the details:</h2>
           <Button className="text-button" onClick={onClose} variant="">
             ✖
           </Button>
