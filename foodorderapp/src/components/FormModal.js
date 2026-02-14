@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 import UserForm from "./UserForm";
+import Button from "./Button";
 
 const FormModal = forwardRef(function FormModal({ onClose }, ref) {
   const [open, setOpen] = useState(false);

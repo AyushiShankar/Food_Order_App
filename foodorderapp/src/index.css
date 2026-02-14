@@ -67,13 +67,13 @@ h1 {
   overflow: hidden;
   text-align: center;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+
 }
 
 .meal-item article {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .meal-item img {
@@ -87,9 +87,9 @@ h1 {
   font-weight: bold;
   margin: 0.75rem 0;
 }
-
 .meal-item-description {
   margin: 1rem;
+  min-height: 4.5rem;
 }
 
 .meal-item-price {
@@ -105,11 +105,17 @@ h1 {
 
 .meal-item-actions {
   margin-bottom: 1.5rem;
+  margin-top: auto;
+  
 }
-
+.meal-item-actions span {
+  margin-bottom: 1.5rem;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .cart h2 {
   margin: 1rem 0;
-  color:black;
+  color: black;
 }
 
 .cart ul {
@@ -120,10 +126,13 @@ h1 {
 
 .modal-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 1rem;
   color: black;
+  align-items: center;
+  font-size: 20px;
 }
+
 
 .modal-actions .text-button {
   color: #1d1a16;
@@ -169,6 +178,7 @@ h1 {
   gap: 1rem;
   align-items: center;
 }
+
 .cart-item-actions {
 
   color: black;
@@ -198,12 +208,20 @@ h1 {
   margin: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  margin-left: 30%;
+  padding: 20px;
+  align-items: center;
+ background-color: #e4ddd4;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  width: 40%;
+  max-width: 40rem;
+  animation: fade-slide-up 0.3s ease-out forwards;
 }
 
 .control label {
   font-weight: bold;
-  margin-bottom: 0.5rem;
+    font-size: 16px;
 }
 
 .control input {
@@ -216,16 +234,17 @@ h1 {
 }
 
 .control p {
- color: red;
+  color: red;
   font-weight: 600;
-
-
+  font-size: 12px;
+  margin:0 0 0.5rem 0;
 }
 
 .control-row {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+
 }
 
 .button {
