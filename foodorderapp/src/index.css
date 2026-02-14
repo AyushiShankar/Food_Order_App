@@ -272,6 +272,12 @@ h1 {
   color: #ffc404;
 }
 
+.text-button img{
+  width: 24px;
+height: 24px;
+
+}
+
 .text-button:hover,
 .text-button:active {
   color: #ffab04;
@@ -312,6 +318,32 @@ h1 {
 
 .error p {
   margin: 0;
+}
+
+.toast {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(199, 199, 118);
+  color: #1f1a09;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+  font-weight:500;
+  align-items: center;
+  display: flex;
+  column-gap: 4px;
+}
+
+.toast span{
+  color: red;
+  font-weight:600;
+}
+.toast  img{
+width: 24px;
+height: 24px;
 }
 
 @keyframes fade-slide-up {
