@@ -11,8 +11,17 @@ function App() {
     const timer = setTimeout(() => {
       setOpen(true);
     }, 3000);
+
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const timer = setTimeout(() => {
+      setOpen(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [open]);
   return (
     <>
       <Header />

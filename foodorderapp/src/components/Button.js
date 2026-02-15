@@ -3,10 +3,15 @@ import ModalCart from "./ModalCart";
 import FormModal from "./FormModal";
 import { useSelector } from "react-redux";
 
-export default function Button({ children, onClick, className, variant }) {
+export default function Button({
+  children,
+  onClick = () => {},
+  className,
+  variant,
+} = {}) {
   const dialog = useRef();
   const cartCount = useSelector((state) =>
-    state.cartOrder.reduce((total, item) => total + item.quantity, 0),
+    state.cartOrder.reduce((total, item) => total + item.quantity, 0)
   );
 
   const [activeModal, setActiveModal] = useState(null);
