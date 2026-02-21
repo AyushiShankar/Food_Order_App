@@ -1,36 +1,65 @@
+# Food Order App ("Zwiggy")
 
-  
-<!--   <h2>🐍 Contributions 🐍</h2>
-  <img alt="snake eating my contributions" src="https://raw.githubusercontent.com/salesp07/salesp07/output/github-contribution-grid-snake.svg" />
-  <p align="center">
-  
-  <img  align=top flex-grow=1 src="https://leetcard.jacoblin.cool/its-nishant320?theme=dark&font=Nunito&ext=heatmap" /> 
+A React + Redux food ordering UI with a small Express backend. The website lets users browse meals, add/remove items from a cart, and complete a checkout form. A promotional toast appears automatically after page load.
 
-</div> -->
-<table align="center"> <thead> <tr> <th>#</th> <th>Hackathon</th> <th> Track</th> <th> Achievement</th> <th> Prize</th> </tr> </thead> <tbody> <tr> <td>10</td> <td>HackSRM 5.0</td> <td>Web3</td> <td>Won Marbalism</td> <td>$500 USD</td> </tr> <tr> <td>9</td> <td>Hackspiration’24 MLC VIT</td> <td>Web3</td> <td>Best Web3 Project (SolidityScan, QuillAudit)</td> <td>$2570 USD</td> </tr> <tr> <td>8</td> <td>DimoHack VIT-AP</td> <td>Web3</td> <td>Won Hyperlane, XDC, Lync</td> <td>$533 USD</td> </tr> <tr> <td>7</td> <td>HackPrix Telangana</td> <td>Open</td> <td>Overall Winner & Internship at Catalog</td> <td>₹30,000 INR</td> </tr> <tr> <td>6</td> <td>Recurzive Hackathon</td> <td>Web3</td> <td>NEAR Protocol bounty</td> <td>₹10,000 INR + $300 USD</td> </tr> <tr> <td>5</td> <td>Sambanova Lightning Hackathon</td> <td>AI</td> <td>Community Selected Project</td> <td>$500 USD</td> </tr> <tr> <td>4</td> <td>American Allegiance of Education</td> <td>Education</td> <td>Top 10 Winners</td> <td>$100 USD</td> </tr> <tr> <td>3</td> <td>Soario: AI Apps for Impact</td> <td>AI</td> <td>2nd Place - High School Division</td> <td>$200 USD</td> </tr> <tr> <td>2</td> <td>Zero to One Hackathon by Convex</td> <td>Web3</td> <td>Community Selected</td> <td>$1500 USD</td> </tr> <tr> <td>1</td> <td>DeFine: Powered by Diamante</td> <td>Web3</td> <td>Best DeFi Application</td> <td>$2000 DIAM + 200 USDT</td> </tr> </tbody> </table>
+## Website Overview
 
-<div align="center"> 
-<h2 align="center">Leetcode Info<h2>  
-<p align="center">
-  <a href="https://leetcode.com/its-nishant320/" target="_blank"><img align="center" src="https://leetcode.com/static/images/badges/2024/gif/2024-02.gif" alt="jyot" height="200" width="200" /></a>
-  <a href="https://leetcode.com/its-nishant320/" target="_blank"><img align="center" src="https://leetcode.com/static/images/badges/2024/gif/2024-03.gif" alt="jyot" height="200" width="200" /></a>
-  <a href="https://leetcode.com/its-nishant320/" target="_blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/2024-200.gif" alt="jyot" height="200" width="200" /></a>
-  <a href="https://leetcode.com/its-nishant320/" target="_blank"><img align="center" src="https://assets.leetcode.com/static_assets/marketing/2024-100.gif" alt="jyot" height="200" width="200" /></a>
-</p>
+What you see in the UI:
+- A branded header with the app name and cart count badge
+- A meals grid/cards list fetched from the backend (`/meals`)
+- Cart modal with item quantity controls and total pricing
+- Checkout form modal with validation (name, email, address, pincode)
+- A timed promotional toast banner
 
+## How It Works (Code Overview)
 
+Frontend (React):
+- `foodorderapp/src/App.js`: main layout; mounts header, meals list, cart modal, and the timed toaster
+- `foodorderapp/src/components/Meals.js`: fetches meals from the backend and renders the list
+- `foodorderapp/src/components/MealItems.js`: renders each meal and dispatches add/increment/decrement actions
+- `foodorderapp/src/components/ModalCart.js`: cart modal with totals and checkout entry point
+- `foodorderapp/src/components/FormModal.js` and `foodorderapp/src/components/UserForm.js`: checkout form and validation
+- `foodorderapp/src/store/index.js`: Redux slice for cart state and pricing logic
 
+Backend (Express):
+- `foodorderapp/backend/app.js`: serves `GET /meals`, handles `POST /orders`, and serves meal images from `foodorderapp/backend/public`
+- `foodorderapp/backend/data/available-meals.json`: meal catalog data
+- `foodorderapp/backend/data/orders.json`: persisted orders (appends new orders)
 
-<br/>
-  <h2 align="center">⚡ Current Statistics ⚡</h2>
-<br>
-<div align=center>
-  <img width=390 src="https://streak-stats.demolab.com/?user=nishant-Tiwari24&count_private=true&theme=react&border_radius=10" alt="streak stats"/>
-  <img width=390 src="https://github-readme-stats.vercel.app/api?username=nishant-Tiwari24&show_icons=true&theme=react&rank_icon=github&border_radius=10" alt="readme stats" />
-  <img width=325 align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nishant-Tiwari24&hide=HTML&langs_count=8&layout=compact&theme=react&border_radius=10&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats" alt="top langs" />
-</div>
+## Running Locally
 
-  <br/>
+1. Install frontend dependencies:
 
-<br/><br/>
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp
+npm install
+```
 
+2. Install backend dependencies:
+
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp/backend
+npm install
+```
+
+3. Start the backend (serves API + images on port 3000):
+
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp/backend
+npm start
+```
+
+4. Start the frontend (Create React App). If port 3000 is already in use by the backend, CRA will prompt to use 3001:
+
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp
+npm start
+```
+
+Open the app in your browser at the frontend URL printed in the terminal.
+
+## Notes
+
+- The frontend expects the backend at `http://localhost:3000`.
+- Meal images are served from `foodorderapp/backend/public/images` and referenced by the meal JSON.
+- Orders are appended to `foodorderapp/backend/data/orders.json` on checkout.

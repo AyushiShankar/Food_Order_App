@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Food Order App ("Zwiggy")
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React + Redux food ordering UI with a small Express backend. The website lets users browse meals, add/remove items from a cart, and complete a checkout form. A promotional toast appears automatically after page load.
 
-## Available Scripts
+## Website Overview
 
-In the project directory, you can run:
+What you see in the UI:
+- A branded header with the app name and cart count badge
+- A meals grid/cards list fetched from the backend (`/meals`)
+- Cart modal with item quantity controls and total pricing
+- Checkout form modal with validation (name, email, address, pincode)
+- A timed promotional toast banner
 
-### `npm start`
+## How It Works (Code Overview)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Frontend (React):
+- `src/App.js`: main layout; mounts header, meals list, cart modal, and the timed toaster
+- `src/components/Meals.js`: fetches meals from the backend and renders the list
+- `src/components/MealItems.js`: renders each meal and dispatches add/increment/decrement actions
+- `src/components/ModalCart.js`: cart modal with totals and checkout entry point
+- `src/components/FormModal.js` and `src/components/UserForm.js`: checkout form and validation
+- `src/store/index.js`: Redux slice for cart state and pricing logic
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Backend (Express):
+- `backend/app.js`: serves `GET /meals`, handles `POST /orders`, and serves meal images from `backend/public`
+- `backend/data/available-meals.json`: meal catalog data
+- `backend/data/orders.json`: persisted orders (appends new orders)
 
-### `npm test`
+## Running Locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Install frontend dependencies:
 
-### `npm run build`
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install backend dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp/backend
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the backend (serves API + images on port 3000):
 
-### `npm run eject`
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp/backend
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Start the frontend (Create React App). If port 3000 is already in use by the backend, CRA will prompt to use 3001:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd /Users/ayushimishra/Documents/GitHub/Food_Order_App/foodorderapp
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open the app in your browser at the frontend URL printed in the terminal.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Notes
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The frontend expects the backend at `http://localhost:3000`.
+- Meal images are served from `backend/public/images` and referenced by the meal JSON.
+- Orders are appended to `backend/data/orders.json` on checkout.
